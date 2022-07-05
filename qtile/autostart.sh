@@ -26,6 +26,7 @@ pulseaudio --start              #
                                                                                                 #
 lxpolkit &                                                                                      #
 #nitrogen --set-scaled /home/sevensuii/Git-Repos/Dotfiles/Wallpapers/Mountains.jpg --save       #
+feh --bg-scale Dotfiles/Wallpapers/Purple_Lake.jpg &
                                                                                                 #
 #################################################################################################
 
