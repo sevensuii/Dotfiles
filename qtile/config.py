@@ -131,7 +131,7 @@ screens = [
                 widget.CurrentLayout(**decor_layout, foreground=foreground_colour),
                 #widget.CPU(format=fa.icons["microchip"]+" {freq_current}GHz {load_percent}%",**decor_wallpaper),
                 widget.CPU(format=fa.icons["microchip"]+" {load_percent}%", foreground=foreground_colour, **decor_CPU),
-                widget.GenPollText(update_interval=600, func=lambda: " {}°C".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/cpu_temp_text")).decode("utf-8")),
+                widget.GenPollText(update_interval=5, func=lambda: " {}".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/ryzen_cpu_temp")).decode("utf-8")),
                                    background="#00000000", foreground=foreground_colour, **decor_Temp),
                 widget.Memory(background="#00000000", foreground=foreground_colour,
                               measure_mem='G', format=fa.icons["server"] + "{MemUsed: .2f} GB", **decor_ram),
@@ -158,8 +158,12 @@ screens = [
                 widget.CheckUpdates(background="#00000000", foreground="#FF0000",
                                     colour_have_updates="#000000", colour_no_updates="#000000", **decor_ram),
                 # Can also use fa.icons["microchip"], fa.icons["chart-bar"]
+                # Battery status and icons
                 #widget.GenPollText(update_interval=1, func=lambda: "{}%".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/bat_poll")).decode("utf-8")),
                 #                   background="#00000000", foreground=foreground_colour, **decor_battery),
+                # use this when `bat` or `bat-asus-battery` commmands are installed
+                widget.GenPollText(update_interval=1, func=lambda: "{}".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/bat_poll_asus")).decode("utf-8")),
+                                   background="#00000000", foreground=foreground_colour, **decor_battery),
                 widget.Clock(format=fa.icons["calendar"] + " %d-%m-%y %a",
                              background="#00000000", foreground=foreground_colour, **decor_Day),
                 widget.Clock(format=" %I:%M:%S %p",
