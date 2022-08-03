@@ -16,7 +16,8 @@ import fontawesome as fa
 mod = "mod4"
 #terminal = guess_terminal()
 #terminal = "gnome-terminal"
-terminal = "alacritty"
+#terminal = "alacritty"
+terminal = 'tabby'
 browser = "brave"
 file_manager = "nemo"
 
@@ -102,14 +103,20 @@ def show_power_menu(qtile):
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
+    # Change keyboard layout
+    Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(),
-        desc="Move window focus to other window"),
+    #Key([mod], "space", lazy.layout.next(),
+    #    desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
+    Key([mod], "Left", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "Right", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "Down", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "Up", lazy.layout.up(), desc="Move focus up"),
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
@@ -117,19 +124,30 @@ keys = [
         desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    # Moving out of range in Columns layout will create new column.
+    Key([mod, "shift"], "Left", lazy.layout.shuffle_left(),
+        desc="Move window to the left"),
+    Key([mod, "shift"], "Right", lazy.layout.shuffle_right(),
+        desc="Move window to the right"),
+    Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(),
+    Key([mod, "control"], "Left", lazy.layout.grow_left(),
         desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(),
+    Key([mod, "control"], "Right", lazy.layout.grow_right(),
         desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "Down", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    # Apps laucher and selector of active windows
     Key(["mod1"], "m", lazy.spawn(
         "rofi -show drun"), desc="Launch Rofi"),
     Key(['mod1'], 'Tab', lazy.spawn(
         'rofi -show'), desc='Rofi show open apps'),
+    # Switch focus of monitors
+    Key([mod], "period", lazy.prev_screen()),
+    Key([mod], "comma", lazy.next_screen()),
     # Screenshots
     Key([], "Print", lazy.spawn(
         "flameshot gui"), desc="Lauch Flameshot GUI"),
@@ -178,5 +196,6 @@ keys = [
     Key([], "XF86AudioNext", lazy.spawn(
         "playerctl next"), desc="Play Next Music Track"),
     Key([], "XF86AudioStop", lazy.spawn("playerctl stop"), desc="Stop the Music"),
+    Key([], "XF86Launch3", lazy.spawn(os.path.expanduser("~/.config/qtile/Scripts/rog_kb_menu")), desc="Keyboard RBG controll"),
     Key([mod, "shift"], "q", lazy.function(show_power_menu)),
     Key(["mod1"], "w", lazy.spawn(os.path.expanduser("~/.config/qtile/Scripts/wifi_menu")), desc="Launch Wi-fi menu script")]

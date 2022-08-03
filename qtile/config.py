@@ -96,20 +96,19 @@ for i in groups:
     )
 
 layouts = [
-    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Bsp(margin=8, border_focus="#533a7b", fair=False, border_on_single=True),
-    layout.Columns(border_focus_stack=[
-                   "#533a7b", "#533a7b"], border_width=3, margin=8, border_focus="#533a7b"),
+    #layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    #layout.Bsp(margin=8, border_focus="#d75f5f", fair=False, border_on_single=True),
+    layout.Columns(border_focus_stack=["#533a7b", "#533a7b"], border_width=3, margin=8, border_focus="#533a7b"),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(),
-    layout.Floating(),
+    #layout.MonadTall(),
+    #layout.Floating(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    layout.Tile(),
+    #layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
@@ -135,12 +134,12 @@ screens = [
                                    background="#00000000", foreground=foreground_colour, **decor_Temp),
                 widget.Memory(background="#00000000", foreground=foreground_colour,
                               measure_mem='G', format=fa.icons["server"] + "{MemUsed: .2f} GB", **decor_ram),
-                widget.GenPollText(update_interval=600, func=lambda: " {} RPM".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/fan_speed_text")).decode("utf-8")),
+                widget.GenPollText(update_interval=10, func=lambda: " {} RPM".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/fan_speed_text")).decode("utf-8")),
                                    background="#00000000", foreground=foreground_colour, **decor_RPM),
-                # widget.Net(interface="wlp2s0", background="#00000000", foreground=foreground_colour,
-                #            format=fa.icons["wifi"]+" {up}", **decor_Wifi),
-                widget.Net(interface="wlo1", background="#00000000", foreground=foreground_colour,
-                           format=fa.icons["wifi"]+" {up}", **decor_Wifi),
+                #widget.Net(interface="wlp3s0", background="#00000000", foreground=foreground_colour,
+                #            format=fa.icons["wifi"]+" ", **decor_Wifi),
+                #widget.Net(interface="wlo1", background="#00000000", foreground=foreground_colour,
+                #           format=fa.icons["wifi"]+" {up}", **decor_Wifi),
                 ##### Spacer
                 widget.Spacer(length=bar.STRETCH),
                 ##### Spacer
@@ -158,11 +157,12 @@ screens = [
                 widget.CheckUpdates(background="#00000000", foreground="#FF0000",
                                     colour_have_updates="#000000", colour_no_updates="#000000", **decor_ram),
                 # Can also use fa.icons["microchip"], fa.icons["chart-bar"]
+                widget.KeyboardLayout(configured_keyboards=['us', 'es'], background='#00000000'), 
                 # Battery status and icons
                 #widget.GenPollText(update_interval=1, func=lambda: "{}%".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/bat_poll")).decode("utf-8")),
                 #                   background="#00000000", foreground=foreground_colour, **decor_battery),
                 # use this when `bat` or `bat-asus-battery` commmands are installed
-                widget.GenPollText(update_interval=1, func=lambda: "{}".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/bat_poll_asus")).decode("utf-8")),
+                widget.GenPollText(update_interval=3, func=lambda: "{}".format(subprocess.check_output(os.path.expanduser("~/.config/qtile/Scripts/bat_poll_asus")).decode("utf-8")),
                                    background="#00000000", foreground=foreground_colour, **decor_battery),
                 widget.Clock(format=fa.icons["calendar"] + " %d-%m-%y %a",
                              background="#00000000", foreground=foreground_colour, **decor_Day),

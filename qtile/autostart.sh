@@ -26,7 +26,7 @@ pulseaudio --start              #
                                                                                                 #
 lxpolkit &                                                                                      #
 #nitrogen --set-scaled /home/sevensuii/Git-Repos/Dotfiles/Wallpapers/Mountains.jpg --save       #
-feh --bg-scale Dotfiles/Wallpapers/Purple_Lake.jpg &
+feh --bg-scale ./.config/qtile/Wallpapers/unix.jpg &
                                                                                                 #
 #################################################################################################
 
@@ -51,16 +51,19 @@ xinput --set-prop 'ASUE120A:00 04F3:319B Touchpad' 'libinput Tapping Enabled' 1 
 ##################                                                                                                      #
                                                                                                                         #
 #connected2k=false                                                                                                       #
-#dpVal=$(xrandr | grep "DP-1-0.8" | cut -d ' ' -f 2)                                                                     #
+dpVal=$(xrandr | grep "DP-1-0.8" | cut -d ' ' -f 2)                                                                     #
 #hdmiVal=$(xrandr | grep "HDMI-1" | cut -d ' ' -f 2)                                                                     #
                                                                                                                         #
 # if main 2k monitor is connected                                                                                       #
 #if [[ $dpVal == 'connected' ]];                                                                                         #
 #then                                                                                                                    #
-#    xrandr --output DP-1-0.8 --primary --mode 2560x1440 --rate 144 --pos 1920x0 --rotate normal --right-of eDP-1        #
+    #xrandr --output DP-1-0.8 --mode 2560x1440 --pos 1920x0 --rotate normal       #
+#    ~/.screenlayout/test.sh
+#    autorandr docked-setup
 #    connected2k=true                                                                                                    #
 #fi                                                                                                                      #
                                                                                                                         #
+# this is not in use rn
 # if secondary monitor is connected                                                                                     #
 #if [[ $hdmiVal == 'connected' ]];                                                                                       #
 #then                                                                                                                    #
@@ -85,8 +88,15 @@ optimus-manager-qt &                            #
                                                 #
 #################################################
 
-
-
-
+#############################################
+# Keyboard RGB initialization #             #
+###############################             #
+                                            #
+~/.config/qtile/Scripts/kb_start &
+#rogauracore initialize_keyboard            #
+#rogauracore rainbow_cycle 2                #
+#rogauracore brightness 2                   #
+                                            #
+#############################################
 
 
